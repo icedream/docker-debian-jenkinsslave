@@ -51,7 +51,6 @@ RUN adduser --disabled-password --gecos "" jenkins && \
 	mkdir /home/jenkins/.ssh && \
 	chown jenkins:jenkins /home/jenkins/.ssh && \
 	chmod 700 /home/jenkins/.ssh && \
-	chmod 600 /home/jenkins/.ssh/* && \
 	adduser jenkins sudo
 
 # passwordless sudo for extra package installations, etc.
