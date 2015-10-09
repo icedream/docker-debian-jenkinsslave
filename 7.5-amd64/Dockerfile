@@ -26,7 +26,7 @@ RUN apt-get update -y && \
 
 # install all packages
 RUN apt-get install -y --no-install-recommends \
-		python-software-properties software-properties-common \
+		'^(python-software-properties|software-properties-common)$' \
 		build-essential gcc-multilib g++-multilib \
 		autotools-dev automake autoconf \
 		curl tar zip unzip xz-utils locales \
@@ -38,7 +38,8 @@ RUN apt-get install -y --no-install-recommends \
 		apt-transport-https ca-certificates
 
 # set up locale
-RUN locale-gen en_US && \
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
+	locale-gen en_US && \
 	update-locale LANG=en_US.UTF-8 LC_CTYPE=en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_CTYPE en_US.UTF-8
