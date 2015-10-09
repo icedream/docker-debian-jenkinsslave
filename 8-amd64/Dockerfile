@@ -72,7 +72,7 @@ RUN cat /jenkins_profile.sh >> ~jenkins/.profile && \
 
 COPY start.sh /
 RUN chmod +x /start.sh
-ENTRYPOINT ["/start.sh"]
+CMD ["/start.sh"]
 
 # SSH for Jenkins master
 EXPOSE 22
