@@ -70,7 +70,9 @@ COPY jenkins_profile.sh /
 RUN cat /jenkins_profile.sh >> ~jenkins/.profile && \
 	rm /jenkins_profile.sh
 
-ENTRYPOINT ["sh", "-c", "dpkg-reconfigure openssh-server && exec /usr/sbin/sshd -D"]
+COPY start.sh /
+RUN chmod +x /start.sh
+ENTRYPOINT ["/start.sh"]
 
 # SSH for Jenkins master
 EXPOSE 22
