@@ -35,13 +35,9 @@ RUN apt-get install -y --no-install-recommends \
 		'^(python-software-properties|software-properties-common)$' \
 		build-essential gcc-multilib g++-multilib \
 		autotools-dev automake autoconf \
-		curl tar zip unzip xz-utils locales \
-		wget zlibc zlib1g bison flex \
-		git subversion cvs mercurial psmisc sudo \
-		binutils-dev dpkg-dev \
-		linux-libc-dev manpages-dev \
-		xvfb runit openssh-server \
-		apt-transport-https ca-certificates \
+		curl tar zip unzip xz-utils locales wget \
+		git subversion cvs mercurial sudo \
+		openssh-server apt-transport-https ca-certificates \
 		'^oracle-java[0-9]+-installer$' oracle-java8-set-default \
 		'^openjdk-[0-9]+-jdk$'
 
