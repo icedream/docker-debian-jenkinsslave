@@ -7,7 +7,7 @@ dpkg-reconfigure openssh-server
 
 # this will properly register the need authorized key
 echo "Downloading authorized key from $1..."
-curl "$1" >> ~jenkins/.ssh/authorized_keys
+curl --silent "$1" >> ~jenkins/.ssh/authorized_keys
 chown jenkins:jenkins -R ~jenkins/.ssh
 chmod 600 ~jenkins/.ssh/*
 
