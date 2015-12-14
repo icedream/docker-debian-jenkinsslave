@@ -1,8 +1,12 @@
 FROM icedream/debian-i386:testing
 MAINTAINER Carl Kittelberger, it@icedreammusic.eu
 
+
+
+
 # qemu static binaries for potential emulation
-COPY /usr/bin/qemu* /usr/bin
+COPY /usr/bin/qemu-static-i386 /usr/bin/
+
 
 # Prevent initramfs from trying to do bootloader stuff
 ENV INITRD no

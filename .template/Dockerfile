@@ -1,8 +1,15 @@
 FROM {{ original_image }}
 MAINTAINER {{ maintainer }}
 
+{% if architecture == "armhf" or architecture == "arm" %}
 # qemu static binaries for potential emulation
-COPY /usr/bin/qemu* /usr/bin
+COPY /usr/bin/qemu-static-arm /usr/bin/
+{% endif %}
+
+{% if architecture == "i386" %}
+# qemu static binaries for potential emulation
+COPY /usr/bin/qemu-static-i386 /usr/bin/
+{% endif %}
 
 # Prevent initramfs from trying to do bootloader stuff
 ENV INITRD no
