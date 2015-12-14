@@ -3,8 +3,6 @@ MAINTAINER Carl Kittelberger, it@icedreammusic.eu
 
 
 
-
-
 # Prevent initramfs from trying to do bootloader stuff
 ENV INITRD no
 
