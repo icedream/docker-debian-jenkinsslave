@@ -2,7 +2,7 @@ FROM library/debian:7.6
 MAINTAINER Carl Kittelberger, it@icedreammusic.eu
 
 # qemu static binaries for potential emulation
-ADD /usr/bin/qemu* /usr/bin
+COPY /usr/bin/qemu* /usr/bin
 
 # Prevent initramfs from trying to do bootloader stuff
 ENV INITRD no

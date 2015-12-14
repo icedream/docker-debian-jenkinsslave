@@ -2,7 +2,7 @@ FROM {{ original_image }}
 MAINTAINER {{ maintainer }}
 
 # qemu static binaries for potential emulation
-ADD /usr/bin/qemu* /usr/bin
+COPY /usr/bin/qemu* /usr/bin
 
 # Prevent initramfs from trying to do bootloader stuff
 ENV INITRD no
