@@ -1,6 +1,9 @@
 FROM library/debian:jessie-backports
 MAINTAINER Carl Kittelberger, it@icedreammusic.eu
 
+# qemu static binaries for potential emulation
+ADD /usr/bin/qemu* /usr/bin
+
 # Prevent initramfs from trying to do bootloader stuff
 ENV INITRD no
 
@@ -33,12 +36,12 @@ RUN apt-get update -y && \
 # install all packages
 RUN apt-get install -y --no-install-recommends \
 		'^(python-software-properties|software-properties-common)$' \
-		build-essential gcc-multilib g++-multilib \
+		build-essential '^(gcc|gcc-multilib)$' '^(g\+\+|g\+\+-multilib)$' \
 		autotools-dev automake autoconf \
 		curl tar zip unzip xz-utils locales wget \
 		git subversion cvs mercurial sudo \
 		openssh-server apt-transport-https ca-certificates \
-		'^oracle-java[0-9]+-installer$' oracle-java8-set-default \
+		'^oracle-java(7|8|9|10)-installer$' oracle-java8-set-default \
 		'^openjdk-[0-9]+-jdk$'
 
 # set up locale

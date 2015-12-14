@@ -13,6 +13,7 @@ mkdirp = require "mkdirp"
 architectures =
 	amd64: "library/debian"
 	i386: "icedream/debian-i386"
+	armhf: "icedream/debian-armhf"
 baseDir = path.resolve path.join(__dirname, "..")
 templateDir = path.join baseDir, ".template"
 maintainer = "Carl Kittelberger, it@icedreammusic.eu"

@@ -1,4 +1,4 @@
-FROM library/debian:8.1
+FROM icedream/debian-armhf:jessie
 MAINTAINER Carl Kittelberger, it@icedreammusic.eu
 
 # qemu static binaries for potential emulation
