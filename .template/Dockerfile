@@ -3,7 +3,7 @@ MAINTAINER {{ maintainer }}
 
 {% if architecture == "armhf" or architecture == "arm" %}
 # qemu static binaries for potential emulation
-COPY /usr/bin/qemu-arm-static /usr/bin/
+COPY qemu-arm-static /usr/bin/
 {% endif %}
 
 # Prevent initramfs from trying to do bootloader stuff

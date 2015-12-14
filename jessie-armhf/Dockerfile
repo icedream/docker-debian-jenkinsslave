@@ -3,7 +3,7 @@ MAINTAINER Carl Kittelberger, it@icedreammusic.eu
 
 
 # qemu static binaries for potential emulation
-COPY /usr/bin/qemu-arm-static /usr/bin/
+COPY qemu-arm-static /usr/bin/
 
 
 # Prevent initramfs from trying to do bootloader stuff
