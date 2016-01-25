@@ -21,27 +21,17 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && \
 RUN dpkg-divert --local --rename --add /usr/bin/ischroot && \
 	ln -sf /bin/true /usr/bin/ischroot
 
-# for Oracle Java
-RUN \
-	echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list &&\
-	echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list &&\
-	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 &&\
-	echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
-
 # Install updates + sudo + apt-utils (get rid of that warning)
 RUN apt-get update -y && \
 	apt-get install -y sudo apt-utils
 
 # install all packages
 RUN apt-get install -y --no-install-recommends \
-		'^(python-software-properties|software-properties-common)$' \
-		build-essential '^(gcc|gcc-multilib)$' '^(g\+\+|g\+\+-multilib)$' \
+		build-essential \
 		autotools-dev automake autoconf \
 		curl tar zip unzip xz-utils locales wget \
 		git subversion cvs mercurial sudo \
-		openssh-server apt-transport-https ca-certificates \
-		'^oracle-java(7|8|9|10)-installer$' oracle-java8-set-default \
-		'^openjdk-[0-9]+-jdk$'
+		openssh-server apt-transport-https ca-certificates
 
 # set up locale
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
