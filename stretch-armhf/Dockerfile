@@ -26,7 +26,8 @@ RUN dpkg-divert --local --rename --add /usr/bin/ischroot && \
 
 # Install updates + sudo + apt-utils (get rid of that warning)
 RUN apt-get update -y && \
-	apt-get install -y sudo apt-utils
+	DEBIAN_FRONTEND=noninteractive apt-get install -y sudo &&\
+	DEBIAN_FRONTEND=noninteractive apt-get install -y apt-utils
 
 # install all packages
 RUN apt-get install -y --no-install-recommends \

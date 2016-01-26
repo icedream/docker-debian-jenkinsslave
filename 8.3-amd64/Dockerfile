@@ -1,4 +1,4 @@
-FROM library/debian:stable-backports
+FROM library/debian:8.3
 MAINTAINER Carl Kittelberger, it@icedreammusic.eu
 
 
