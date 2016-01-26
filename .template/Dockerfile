@@ -26,11 +26,11 @@ RUN dpkg-divert --local --rename --add /usr/bin/ischroot && \
 
 # Install updates + sudo + apt-utils (get rid of that warning)
 RUN apt-get update -y && \
-	DEBIAN_FRONTEND=noninteractive apt-get install -y sudo &&\
-	DEBIAN_FRONTEND=noninteractive apt-get install -y apt-utils
+	DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y sudo &&\
+	DEBIAN_FRONTEND=noninteractive apt-get install --force-yes -y apt-utils
 
 # install all packages
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get install --force-yes -y --no-install-recommends \
 		build-essential \
 		autotools-dev automake autoconf \
 		curl tar zip unzip xz-utils locales wget \
