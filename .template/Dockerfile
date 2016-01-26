@@ -34,7 +34,7 @@ RUN apt-get install --force-yes -y --no-install-recommends \
 		build-essential \
 		autotools-dev automake autoconf \
 		curl tar zip unzip xz-utils locales wget \
-		git subversion cvs mercurial sudo \
+		git subversion cvs mercurial \
 		openssh-server apt-transport-https ca-certificates
 
 # set up locale
