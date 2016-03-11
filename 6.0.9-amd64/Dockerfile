@@ -63,9 +63,6 @@ RUN apt-get autoremove -y && \
 
 # ssh preparation
 RUN mkdir -p /var/run/sshd
-COPY jenkins_profile.sh /
-RUN cat /jenkins_profile.sh >> ~jenkins/.profile && \
-	rm /jenkins_profile.sh
 
 COPY start.sh /
 RUN chmod +x /start.sh
