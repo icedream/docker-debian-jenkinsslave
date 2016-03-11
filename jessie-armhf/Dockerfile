@@ -35,7 +35,8 @@ RUN apt-get install --force-yes -y --no-install-recommends \
 		autotools-dev automake autoconf \
 		curl tar zip unzip xz-utils locales wget \
 		git subversion cvs mercurial \
-		openssh-server apt-transport-https ca-certificates
+		openssh-server apt-transport-https ca-certificates \
+		'^openjdk-(6|7)-jre$'
 
 # set up locale
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
