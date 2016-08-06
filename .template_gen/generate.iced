@@ -53,28 +53,37 @@ compileDir = (srcDir, targetDir, data) ->
 
 for own architecture, original_repository of architectures
 	await request {
-		url: "https://registry.hub.docker.com/v1/repositories/#{original_repository}/tags"
+		url: "https://registry.hub.docker.com/v2/repositories/#{original_repository}/tags"
 		json: true
-	}, defer(error, response, tags)
+	}, defer(error, response, data)
 
-	if error
-		console.error "Failed to download tag list for #{original_repository}.", error
-		continue
-
-	if response.statusCode != 200
-		console.error "Failed to download tag list for #{original_repository}, the server returned HTTP error code #{response.statusCode}."
-		continue
-
-	for tag in tags
-		targetDir = path.join baseDir, "#{tag.name}-#{architecture}"
-		await mkdirp targetDir, defer err
-		if err
-			console.error "Could not create directory", targetDir
+	while data != null
+		if error
+			console.error "Failed to download tag list for #{original_repository}.", error
 			continue
 
-		compileDir templateDir, targetDir,
-			original_image: "#{original_repository}:#{tag.name}"
-			original_repository: original_repository
-			tag: tag
-			architecture: architecture
-			maintainer: maintainer
+		if response.statusCode != 200
+			console.error "Failed to download tag list for #{original_repository}, the server returned HTTP error code #{response.statusCode}."
+			continue
+
+		for tag in data.results
+			targetDir = path.join baseDir, "#{tag.name}-#{architecture}"
+			await mkdirp targetDir, defer err
+			if err
+				console.error "Could not create directory", targetDir
+				continue
+
+			compileDir templateDir, targetDir,
+				original_image: "#{original_repository}:#{tag.name}"
+				original_repository: original_repository
+				tag: tag
+				architecture: architecture
+				maintainer: maintainer
+
+		if data.next == null
+			data = null
+		else
+			await request {
+				url: data.next
+				json: true
+			}, defer(error, response, data)
